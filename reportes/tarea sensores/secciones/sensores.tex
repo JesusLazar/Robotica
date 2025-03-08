@@ -1,0 +1,199 @@
+
+
+\section{Sensores Internos}
+
+Los sensores internos son dispositivos esenciales en los sistemas robóticos, ya que permiten monitorear el estado interno del robot, como su posición, velocidad, aceleración y fuerzas aplicadas. Estos sensores proporcionan información crítica que el controlador utiliza para tomar decisiones y generar comandos de control. Dependiendo de la cantidad física que miden, los sensores internos se clasifican en sensores de posición, velocidad, aceleración y fuerza.
+
+\subsection{Sensores Internos de Posición}
+
+Los sensores de posición son fundamentales para determinar la ubicación exacta de un robot o de sus componentes en un momento dado. Estos sensores son cruciales en aplicaciones que requieren precisión, como la manipulación de objetos o la navegación autónoma.
+
+\subsubsection{Encoders}
+El encoder es un dispositivo óptico digital que convierte el movimiento en una secuencia de pulsos digitales. Estos pulsos pueden ser contados o decodificados para obtener medidas relativas o absolutas de posición. Los encoders se clasifican en dos tipos principales: incrementales y absolutos. Además, pueden ser lineales o rotatorios, dependiendo de la aplicación \cite{OMCH}.
+
+\begin{itemize}
+	\item \textbf{Encoders incrementales}: Generan pulsos mientras se mueven, lo que permite medir la velocidad o la trayectoria de la posición. Sin embargo, no proporcionan información sobre la posición absoluta.
+	\item \textbf{Encoders absolutos}: Generan una salida digital que indica directamente la posición actual, lo que los hace ideales para aplicaciones que requieren un conocimiento preciso de la posición inicial.
+\end{itemize}
+
+En la \autoref{fig:encoder} se muestra un ejemplo de este sensor.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[Encoder]{%
+		\includegraphics[width=0.2\textwidth]{encoder.jpg}%
+		\label{fig:Encoder}
+	}
+	\subfloat[Encoder Funcionamiento]{%
+		\includegraphics[width=0.35\textwidth]{img/encoder-fn}%
+		\label{fig:encoder-fn}
+	}
+	\caption{Ejemplo de un encoder y su funcionamiento.}
+	\label{fig:encoder}
+\end{figure}
+
+\subsubsection{Potenciómetro}
+El potenciómetro es un sensor de posición que convierte desplazamientos lineales o angulares en una señal de voltaje. Consiste en una clavija deslizante que hace contacto con un elemento resistivo. A medida que el punto de contacto se mueve, la resistencia cambia en proporción al desplazamiento, lo que permite medir la posición. Los potenciómetros son ampliamente utilizados en aplicaciones de bajo costo y baja precisión \cite{Potenciometro}.
+
+En la \autoref{fig:potenciometros} se muestra un ejemplo de este sensor.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[Potenciómetro]{%
+		\includegraphics[width=0.2\textwidth]{potenciometro.jpg}%
+		\label{fig:potenciometro}
+	}
+	\subfloat[Funcionamiento de potenciómetro]{%
+		\includegraphics[width=0.3\textwidth]{img/potenciometro-funcionamiento}%
+		\label{fig:potenciometro-funcionamiento}
+	}
+	\caption{Ejemplo de un potenciómetro y su funcionamiento.}
+	\label{fig:potenciometros}
+\end{figure}
+
+\subsubsection{LVDT}
+El transformador diferencial lineal variable (LVDT) es uno de los sensores de posición más precisos disponibles. Genera una señal de corriente alterna (CA) cuya magnitud está relacionada con el desplazamiento de un núcleo móvil. El LVDT es ideal para aplicaciones que requieren alta precisión y confiabilidad, como en la industria aeroespacial y médica \cite{LVDT}.
+
+En la \autoref{fig:LVTD} se muestra un ejemplo de este sensor.
+
+\begin{figure*}[h!]
+	\centering
+	\subfloat[Transformador diferencial lineal variable (LVDT)]{%
+		\includegraphics[width=0.2\textwidth]{lvtd.jpg}%
+		\label{fig:lvdt}
+	}
+	\subfloat[Funcionamiento de un LVTD]{%
+		\includegraphics[width=0.2\textwidth]{img/lvdt-funcionamiento}%
+		\label{fig:lvdt-funcionamiento}
+	}
+	\caption{Ejemplo de un LVDT y su funcionamiento.}
+	\label{fig:LVTD}
+\end{figure*}
+
+\subsubsection{Sincronizadores y Resolvers}
+Los sincronizadores y resolvers son sensores de posición que proporcionan señales analógicas como salida. A diferencia de los encoders, que producen señales digitales, estos dispositivos requieren un convertidor analógico-digital para procesar la señal. Son ampliamente utilizados en aplicaciones industriales y de automatización \cite{Resolver}.
+
+En la \autoref{fig:resolver} se muestra un ejemplo de este sensor.
+\begin{figure*}[h!]
+	\centering
+	\subfloat[Resolver]{%
+		\includegraphics[width=0.3\textwidth]{img/resolvers-fn}%
+		\label{fig:resolvers}
+	}
+	\subfloat[Funcionamiento de un LVTD]{%
+		\includegraphics[width=0.5\textwidth]{img/resolvers-funcionamiento}%
+		\label{fig:resolvers-funcionamiento}
+	}
+	\caption{Ejemplo de un resolver y su funcionamiento.}
+	\label{fig:resolver}
+\end{figure*}
+
+\subsection{Sensores Internos de Velocidad}
+
+Los sensores de velocidad son esenciales para controlar la dinámica de un robot, permitiendo medir la velocidad de rotación o traslación de sus componentes.
+
+\subsubsection{Tacómetro}
+El tacómetro es un sensor que mide directamente la velocidad de rotación de un eje. Funciona basándose en la regla de Fleming, que establece que el voltaje generado es proporcional a la velocidad de rotación. Los tacómetros son ampliamente utilizados en motores y sistemas de control de velocidad \cite{Acelerometro}.
+
+En la \autoref{fig:tacometro2} se muestra un ejemplo de este sensor.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[Tacómetro]{%
+		\includegraphics[width=0.2\textwidth]{img/tacometro}%
+		\label{fig:tacometro}
+	}
+	\subfloat[Tacómetro Funcionamiento]{%
+		\includegraphics[width=0.7\textwidth]{img/tacometro-fn}%
+		\label{fig:tacometro-fn}
+	}
+	\caption{Ejemplo de un tacómetro y su funcionamiento.}
+	\label{fig:tacometro2}
+\end{figure}
+
+\subsubsection{Sensor de Efecto Hall}
+El sensor de efecto Hall detecta campos magnéticos y convierte la velocidad de rotación de un imán en una señal eléctrica. Este tipo de sensor es ampliamente utilizado en aplicaciones automotrices e industriales debido a su alta precisión y durabilidad \cite{EfectoHall}.
+
+En la \autoref{fig:SensordeEfectoHall} se muestra un ejemplo de este sensor.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[Sensor de Efecto Hall]{%
+		\includegraphics[width=0.2\textwidth]{img/Sensor_efecto_Hall}%
+		\label{fig:Sensor_efecto_Hall}
+	}
+	\subfloat[Funcionamiento de Sensor de Efecto Hall]{%
+		\includegraphics[width=0.35\textwidth]{img/Sensor_efecto_Hall-fn}%
+		\label{fig:Sensor_efecto_Hall-fn}
+	}
+	\caption{Ejemplo de un sensor de efecto Hall y su funcionamiento.}
+	\label{fig:SensordeEfectoHall}
+\end{figure}
+
+\section{Sensores Internos de Aceleración}
+
+La aceleración es una medida crítica en sistemas robóticos, especialmente en aplicaciones que involucran movimientos rápidos o cambios bruscos de dirección. Los sensores de aceleración permiten medir esta cantidad física de manera directa, evitando la necesidad de calcularla a partir de datos de velocidad o posición, lo que puede ser computacionalmente costoso \cite{Acelerometro}.
+
+\section{Sensores Internos de Fuerza}
+
+Los sensores de fuerza, también conocidos como células de carga, son dispositivos que miden la fuerza aplicada sobre un objeto. Estos sensores son esenciales en aplicaciones como la manipulación de objetos, donde es necesario controlar la fuerza ejercida para evitar daños.
+
+\subsection{Galgas Extensométricas}
+Las galgas extensométricas son sensores que miden la deformación de un material, lo que permite calcular la fuerza aplicada. Estas galgas funcionan basándose en el principio de que la resistencia eléctrica de un conductor cambia cuando se estira o comprime \cite{Galgas}.
+
+En la \autoref{fig:galgas} se muestra un ejemplo de este sensor.
+
+\begin{figure*}[h!]
+	\centering
+	\subfloat[Imagen de Galgas Extensométricas]{%
+		\includegraphics[width=0.25\textwidth]{img/Galgas_extensometricas}%
+		\label{fig:galgas_extensometricas}
+	}
+	\subfloat[Funcionamiento de Galgas Extensométricas]{%
+		\includegraphics[width=0.25\textwidth]{img/Galgas_extensometricas-fn}%
+		\label{fig:galgas_extensometricas-fn}
+	}
+	\caption{Ejemplo de galgas extensométricas y su funcionamiento.}
+	\label{fig:galgas}
+\end{figure*}
+
+\subsection{Sensor Piezoeléctrico}
+Los sensores piezoeléctricos generan una señal eléctrica cuando se someten a una fuerza mecánica. Este efecto es reversible, lo que significa que también pueden cambiar sus dimensiones físicas cuando se aplica un voltaje. Estos sensores son ampliamente utilizados en aplicaciones de medición de vibraciones y fuerzas dinámicas \cite{Piezoelectricos}.
+
+En la \autoref{fig:piezoelectricos} se muestra un ejemplo de este sensor.
+
+\begin{figure*}[h!]
+	\centering
+	\subfloat[Imagen de sensor piezoeléctrico]{%
+		\includegraphics[width=0.15\textwidth]{img/Sensor_piezoelectrico}%
+		\label{fig:piezoelectrico}
+	}
+	\subfloat[Funcionamiento de sensor piezoeléctrico]{%
+		\includegraphics[width=0.3\textwidth]{img/piezoelectrico-fn}%
+		\label{fig:piezoelectrico-fn}
+	}
+	\caption{Ejemplo de un sensor piezoeléctrico y su funcionamiento.}
+	\label{fig:piezoelectricos}
+\end{figure*}
+
+
+
+
+\subsection{Interruptores de Efecto Hall}
+Los interruptores de efecto Hall son dispositivos que detectan campos magnéticos y se utilizan para medir la posición o la velocidad de un objeto. A diferencia de los interruptores mecánicos, estos dispositivos no tienen partes móviles, lo que los hace más duraderos y confiables \cite{EfectoHall}.
+
+En la \autoref{fig:interruptordeefectohall} se muestra un ejemplo de este sensor.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[Interruptor de Efecto Hall]{%
+		\includegraphics[width=0.15\textwidth]{img/Interruptor_efecto_Hall}%
+		\label{fig:Interruptor_efecto_Hall}
+	}
+	\subfloat[Funcionamiento de Interruptor de Efecto Hall]{%
+		\includegraphics[width=0.35\textwidth]{img/Interruptor_efecto_Hall-fn}%
+		\label{fig:Interruptor_efecto_Hall-fn}
+	}
+	\caption{Ejemplo de un interruptor de efecto Hall y su funcionamiento.}
+	\label{fig:interruptordeefectohall}
+\end{figure}
