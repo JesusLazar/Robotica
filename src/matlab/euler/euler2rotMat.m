@@ -6,10 +6,10 @@ function R = euler2rotMat(euler, secuencia)
 % secuencia = "XYZ"
 % R = euler2rotMat(euler, secuencia)
 
-phi = euler(1,:);      % phi:   rotación alrededor del eje X
-theta = euler(2,:);    % theta: rotación alrededor del eje Y
-psi = euler(3,:);      % psi:   rotación alrededor del eje Z
+phi = euler(1);      % phi:   rotación alrededor del eje X
+theta = euler(2);    % theta: rotación alrededor del eje Y
+psi = euler(3);      % psi:   rotación alrededor del eje Z
 if secuencia == "XYZ"
-    R =
+    R = Rx(phi) * Ry(theta) * Rz(psi);
 end
 
