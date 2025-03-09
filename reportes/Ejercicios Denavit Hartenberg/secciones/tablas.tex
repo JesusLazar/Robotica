@@ -1,0 +1,44 @@
+\section{Tablas}
+Existen varias formas de crear tablas además de este entorno, como \texttt{array}, \texttt{longtable} y \texttt{tabularx}, que permiten manejar datos extensos de manera eficiente. También es posible convertirlas desde páginas, como en \href{https://tableconvert.com/es/excel-to-latex}{TableConvert}, que permite transformar datos de Excel a formato \LaTeX fácilmente.
+
+A continuación, se presenta una tabla larga como ejemplo:
+
+\newcounter{actividad} % Define un contador llamado "actividad"
+\begin{longtable}{|c|p{10cm}|c|} % Define anchos específicos
+	\caption{Ejemplo de Tabla Larga.} \label{tab:ejemplo_tabla} \\
+	\hline
+	\textbf{No.} & \textbf{Descripción} & \textbf{Estado} \\
+	\hline
+	\endfirsthead
+	\multicolumn{3}{c}{{\tablename\ \thetable{} -- continuación}} \\
+	\hline
+	\textbf{No.} & \textbf{Descripción} & \textbf{Estado} \\
+	\hline
+	\endhead
+	\hline \multicolumn{3}{r}{{Continúa en la siguiente página...}} \\
+	\hline
+	\endfoot
+	\hline
+	\endlastfoot
+	% Contenido de la tabla
+	1 & Lorem ipsum dolor sit amet, consectetur adipiscing elit. & Completado \\
+	2 & Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. & En proceso \\
+	3 & Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. & Pendiente \\
+	4 & Duis aute irure dolor in reprehenderit in voluptate velit. & Pendiente \\
+	5 & Excepteur sint occaecat cupidatat non proident. & Pendiente \\
+	6 & Sunt in culpa qui officia deserunt mollit anim id est laborum. & Pendiente \\
+	7 & Curabitur pretium tincidunt lacus, nulla gravida orci a odio. & Pendiente \\
+	8 & Nullam varius, turpis et commodo pharetra. & Pendiente \\
+	9 & Sed ac orci quis tortor imperdiet venenatis. & Pendiente \\
+	10 & Duis eget orci sit amet orci dignissim rutrum. & Pendiente \\
+	11 & Nam dui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. & Pendiente \\
+	12 & Pellentesque habitant morbi tristique senectus et netus et malesuada. & Pendiente \\
+	13 & Fusce convallis metus id felis luctus adipiscing. & Pendiente \\
+	14 & Pellentesque dapibus hendrerit tortor. & Pendiente \\
+	15 & Praesent egestas tristique nibh. & Pendiente \\
+	16 & Curabitur a felis in nunc fringilla tristique. & Pendiente \\
+	17 & Phasellus nec sem in justo pellentesque facilisis. & Pendiente \\
+	18 & Etiam imperdiet imperdiet orci. & Pendiente \\
+	19 & Vestibulum ante ipsum primis in faucibus orci luctus et ultrices. & Pendiente \\
+	20 & Quisque id mi. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. & Pendiente \\
+\end{longtable}
