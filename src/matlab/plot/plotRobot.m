@@ -1,10 +1,12 @@
-function plotRobot(A, offset, tipo, frame_scale, viewAngle)
-% plotRobot Visualiza un robot a partir de matrices locales de transformación A.
+function plotRobot(A, A0, offset, tipo, frame_scale, viewAngle)
+% plotRobot Visualiza un robot a partir de matrices locales de transformación A,
+% considerando una transformación base A0.
 %
-%   plotRobot(A, offset, tipo) utiliza A, un array 4x4xn en el que cada A(:,:,i)
+%   plotRobot(A, A0, offset, tipo) utiliza A, un array 4x4xn en el que cada A(:,:,i)
 %   contiene una única variable simbólica correspondiente a la articulación i, y se espera:
 %       - Si tipo(i)=='r', la variable simbólica se llame "theta_i"
 %       - Si tipo(i)=='p', la variable se llame "d_i"
+%   A0 es la matriz de transformación homogénea inicial (posición y orientación base).
 %   offset es un vector (n×1) con el valor numérico que se sustituirá en la variable de A(:,:,i).
 %   tipo es un vector (o array de char) de tamaño n con 'r' o 'p' según el tipo de junta.
 %
@@ -17,17 +19,17 @@ function plotRobot(A, offset, tipo, frame_scale, viewAngle)
 %   La función realiza lo siguiente:
 %     1. Sustituye en cada A(:,:,i) la variable simbólica correspondiente (según tipo) por
 %        el valor de offset(i).
-%     2. Calcula la transformación global T recursivamente:
-%            T(:,:,1) = A_sub(:,:,1)
+%     2. Calcula la transformación global T recursivamente, iniciando en A0:
+%            T(:,:,1) = A0 * A_sub(:,:,1)
 %            T(:,:,i) = T(:,:,i-1) * A_sub(:,:,i)
 %     3. Grafica el sistema base y cada sistema de referencia con sus ejes (X en rojo, Y en verde, Z en azul)
 %        y etiqueta cada origen con el número del sistema de referencia.
 
     % Valores por defecto
-    if nargin < 4 || isempty(frame_scale)
+    if nargin < 5 || isempty(frame_scale)
         frame_scale = 0.1;
     end
-    if nargin < 5 || isempty(viewAngle)
+    if nargin < 6 || isempty(viewAngle)
         viewAngle = 3; % Vista 3D por defecto
     end
 
@@ -57,9 +59,9 @@ function plotRobot(A, offset, tipo, frame_scale, viewAngle)
         end
     end
 
-    % Calcular la transformación global T a partir de A_sub
+    % Calcular la transformación global T a partir de A_sub iniciando en A0
     T = zeros(4,4,n);
-    T(:,:,1) = double(A_sub(:,:,1));
+    T(:,:,1) = double(A0 * A_sub(:,:,1));
     for i = 2:n
         T(:,:,i) = T(:,:,i-1) * double(A_sub(:,:,i));
     end
@@ -70,10 +72,10 @@ function plotRobot(A, offset, tipo, frame_scale, viewAngle)
     grid on;
     axis equal;
     xlabel('X'); ylabel('Y'); zlabel('Z');
-    title('Visualización del Robot y sus Sistemas de Referencia (usando A)');
+    title('Visualización del Robot y sus Sistemas de Referencia (usando A y A0)');
     
-    % Dibujar el sistema de referencia base (articulación 0)
-    X0 = eye(4);
+    % Dibujar el sistema de referencia base usando A0
+    X0 = A0;
     origin0 = X0(1:3,4);
     x_axis0 = X0(1:3,1);
     y_axis0 = X0(1:3,2);
@@ -83,12 +85,12 @@ function plotRobot(A, offset, tipo, frame_scale, viewAngle)
     quiver3(origin0(1), origin0(2), origin0(3), frame_scale*z_axis0(1), frame_scale*z_axis0(2), frame_scale*z_axis0(3), 'b', 'LineWidth', 2);
     text(origin0(1), origin0(2), origin0(3), '0', 'FontSize', 12, 'Color', 'k', 'FontWeight', 'bold');
     
-    origins = zeros(n, 3);
+    origins = zeros(3, n);
     % Graficar cada sistema de referencia obtenido de T
     for i = 1:n
         X_i = T(:,:,i);
         origin = X_i(1:3, 4);
-        origins(i, :) = origin';
+        origins(:, i) = origin;
         x_axis = X_i(1:3, 1);
         y_axis = X_i(1:3, 2);
         z_axis = X_i(1:3, 3);
@@ -103,9 +105,9 @@ function plotRobot(A, offset, tipo, frame_scale, viewAngle)
     end
 
     % Conectar la base y los orígenes de cada articulación
-    base_origin = [0, 0, 0];
-    all_origins = [base_origin; origins];
-    plot3(all_origins(:,1), all_origins(:,2), all_origins(:,3), 'k-', 'LineWidth', 2);
+    base_origin = origin0; % La base es la transformación A0
+    all_origins = [base_origin origins];
+    plot3(all_origins(1,:), all_origins(2,:), all_origins(3,:), 'k-', 'LineWidth', 2);
     
     % Ajustar la vista
     view(viewAngle);
