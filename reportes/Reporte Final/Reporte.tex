@@ -1,0 +1,418 @@
+%\documentclass{clases}
+\documentclass[a4paper,12pt, oneside]{book}
+
+\usepackage[skins,minted]{tcolorbox}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-tabla]{babel}
+\addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+\languageshorthands{spanish}
+\usepackage{lmodern} % Usa las fuentes modernas de LaTeX
+\usepackage[numbers]{natbib}
+%\usepackage{morewrites}
+\usepackage{inconsolata}
+\usepackage{mdframed}
+\usepackage{minted}
+\usepackage{bm}
+\usepackage{listingsutf8}
+\lstset{
+  inputencoding=utf8,
+  language=Python,
+  % … tus otras opciones …
+}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{array}    % Necesario para centrar horizontal y verticalmente
+\usepackage{xcolor}
+\usepackage{pdfpages}
+%\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{menukeys}
+\usepackage{appendix}
+\usepackage{fontawesome}
+\usepackage{comment}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage[explicit]{titlesec}
+\usepackage[a4paper]{geometry}
+\geometry{top=3cm, bottom=3cm, left=4cm, right=2cm}
+
+\definecolor{green1}{HTML}{1dae28}
+\definecolor{green2}{HTML}{afd095}
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{orange}{RGB}{18,84,183}
+\definecolor{titulo}{gray}{0.75}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+\definecolor{advertencia}{RGB}{255,178,102}
+\definecolor{colorturqueza}{RGB}{178,223,238}
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedframe}{rgb}{0.0,0.0,0.0}
+\definecolor{codebg}{rgb}{0.96,0.96,0.96}
+\definecolor{colorurls}{RGB}{107,17,17}
+\definecolor{colorsql}{RGB}{255,245,245}
+\definecolor{colorreferences}{RGB}{48,134,3}
+\definecolor{titulo}{gray}{0.65}			%------ color para fondo del titulo de tablas.
+
+\hypersetup{
+	%bookmarks=true,         % show bookmarks bar?
+	unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+	pdftoolbar=true,        % show Acrobat’s toolbar?
+	pdfmenubar=true,        % show Acrobat’s menu?
+	pdffitwindow=false,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+	pdftitle={Reporte final de Robótica},    % title
+%	pdfauthor={},     % author
+	pdfsubject={Reporte final de Robótica},   % subject of the document
+	%pdfcreator={pdfTeX 3.14159265-2.6-1.40.16 (TeX Live 2016/dev)},   % creator of the document
+	%pdfproducer={Panel HJ 2017}, % producer of the document
+	pdfkeywords={Manipulador industrial} {Robotica} {ros} {gazebo}, % list of keywords
+	%pdfnewwindow=true,      % links in new PDF window
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+	citecolor=colorreferences,        % color of links to bibliography
+	filecolor=magenta,      % color of file links
+	urlcolor=blue,           % color of external links
+	linkbordercolor={0 0 0}
+}
+
+\lstset{
+	frame=Ltb,
+	tabsize=2,
+	framerule=0pt,
+	aboveskip=0.5cm,
+	framextopmargin=0pt,
+	framexbottommargin=0pt,
+	framexleftmargin=0.4cm,
+	framesep=0pt,
+	rulesep=.0pt,
+	backgroundcolor=\color{gray97},
+	rulesepcolor=\color{blue},
+	%
+	stringstyle=\ttfamily,
+	showstringspaces = false,
+	basicstyle=\small\ttfamily,
+	commentstyle=\color{gray45},
+	keywordstyle=\bfseries,
+	%
+	numbers=none,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	numberfirstline = false,
+	breaklines=true
+}
+
+\setminted[bash]{
+	bgcolor=mintedbackground,
+	fontfamily=tt,
+	linenos=true,
+	numberblanklines=true,
+	numbersep=11pt,
+	numbersep=2pt,
+	gobble=0,
+	frame=leftline,
+	framesep=2mm,
+	funcnamehighlighting=false,
+	tabsize=4,
+	obeytabs=false,
+	samepage=false,
+	showspaces=false,
+	showtabs =false,
+	texcl=false,
+	baselinestretch=1.2,
+	fontsize=\footnotesize,
+	breaklines=true,
+	breaksymbolleft=\ 
+}
+
+\lstdefinestyle{consola}{
+	basicstyle=\footnotesize\bf\ttfamily,
+	backgroundcolor=\color{gray75},
+}	
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\lstset{language=XML}
+
+\lstdefinelanguage{XML}{
+	morestring=[b]",
+	tabsize=2,
+	breaklines=true,
+	morestring=[s]{>}{<},
+	morecomment=[s]{<?}{?>},
+	stringstyle=\color{black},
+	identifierstyle=\color{darkblue},
+	keywordstyle=\color{cyan},
+	numbers=left,
+	morekeywords={xmlns,version,type}% list your attributes here
+}
+
+\lstdefinestyle{C}{language=C}
+\lstdefinestyle{XML}{language=XML}
+
+\DeclareMathOperator{\diag}{diag}
+\lstset{literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1 {'}{{\textquotesingle}}1 {Ñ}{{\~N}}1
+	{ñ}{{\~n}}1
+}
+
+\newtcblisting{terminal}[2][]{
+	listing engine=minted,
+	listing only,
+	#1,
+	title=#2,
+	minted language=bash,
+	colback=mintedbackground,
+	top=0mm,
+	bottom=0mm
+}
+
+\newtcblisting{consolestyle}[2][]{enhanced, listing engine=minted, 
+	listing only,#1, title=#2, minted language=bash, 
+	coltitle=mintedbackground!35!black, 
+	fonttitle=\ttfamily\footnotesize,
+	sharp corners, top=0mm, bottom=0mm,
+	title code={\path[draw=mintedframe, dashed, fill=mintedbackground](title.south west)--(title.south east);},
+	frame code={\path[draw=mintedframe, fill=mintedbackground](frame.south west) rectangle (frame.north east);}
+}
+
+
+\graphicspath{{img/}{tablas/}{portada/}}  % Las imágenes se buscarán en la carpeta "img"
+
+\newenvironment{doble}
+{\doublespacing
+}
+
+%\newcounter{comando}[section]
+%\newenvironment{comando}[1][]{\refstepcounter{comando}\par\medskip
+	%	\noindent \textbf{Comando~\thecomando. #1} \rmfamily}{\medskip}
+%\begin{terminal}{#1}
+
+%\end{terminal}
+%}{\medskip}
+
+\graphicspath{ {img/} }
+
+\begin{document}
+
+	\newfloat{Comando}{h}{lot}[chapter]
+	
+	\renewcommand{\tablename}{Tabla}
+	\renewcommand{\listtablename}{Índice de tablas}
+	\renewcommand\listoflistingscaption{Índice de códigos}
+	\renewcommand\listingscaption{Código}
+	\newcommand{\code}[1]{\colorbox{lightgray}{\texttt{#1}}}
+	\renewcommand*{\lstlistlistingname}{Índice de fragmentos de código}
+
+	\renewcommand\lstlistingname{Código}
+	\renewcommand{\appendixname}{Anexo}
+	\renewcommand{\appendixtocname}{Anexos}
+	%\renewcommand{\appendixpagename}{Anexo}
+	\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++ \space}}}
+	\def\Cc{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+	\newcommand{\ffolder}[1]{\menu{\faFolderO \space #1}}
+	\newcommand{\ffile}[1]{\menu{\faFileO \space #1}}
+	\newcommand{\folder}{\faFolderO \space}
+	\newcommand{\file}{\faFileO \space}
+	\newcommand{\world}{\faGlobe \space}
+	\newcommand{\wworld}[1]{\menu{\faGlobe \space #1}}
+	\renewcommand\labelitemi{$\bullet$}
+	\newcommand{\SB}{\{B\}} % Define el sistema del cuerpo
+	\newcommand{\SI}{\{I\}} % Define el sistema inercial
+	
+	\newcounter{actividad} % Define un contador llamado "actividad"
+	
+	% Aquí se encuentra el archivo con la portada
+	\input{portada/portada}
+	
+	\spacing{1.5}
+	\frontmatter
+	%\chapter{Dedicatoria}
+	%\input{capitulos/01_dedicatoria}
+	
+	%\chapter{Declaración}
+	%\input{capitulos/02_declaracion}
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{~\raisebox{-1.5pt}{}
+	\\\filleft #1 \\\vspace{.25cm}\titlerule[1.5pt]}
+	
+	% ---------------------------------------
+	% índices
+	\newpage\addcontentsline{toc}{chapter}{Índice general}\tableofcontents
+	
+	%\listof{Comando}{Índice de Comandos}\addcontentsline{toc}{chapter}{Índice de comandos}
+
+	\newpage\addcontentsline{toc}{chapter}{Índice de figuras}\listoffigures
+	
+	%\newpage\addcontentsline{toc}{chapter}{Índice de tablas}\listoftables
+	
+	%\newpage\addcontentsline{toc}{chapter}{Índice de fragmentos de código}\lstlistoflistings
+	
+	\hypersetup{
+		linkcolor=red
+	}
+	
+	\mainmatter
+	\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[L]{\leftmark}
+	\fancyhead[R]{}
+	\fancyfoot[L]{\parbox[l]{\textwidth-1cm}{\rightmark}}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage}
+	\renewcommand{\footrulewidth}{0.5pt}
+	%\fancyfoot[RO,LE]{Diseño de modelo para simulación 3D de VANT tipo cuadricóptero}
+	
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{\titlerule[3pt]~\raisebox{-1.5pt}{\sc{\chaptername}~\thechapter}~\titlerule[3pt]%
+		\\\vspace{.05cm}\titlerule\\\filcenter #1 \\\vspace{.25cm}\titlerule}
+	
+	\chapter{Introducción} \label{chap:planteamiento-del-problema}
+	\input{capitulos/Introduccion}
+	
+	\part{Marco teórico}
+		\chapter{Revisión del estado del arte} \label{chap:estado del arte}
+		\input{capitulos/estado_del_arte}
+
+		\chapter{Dinámica modelada por ángulos de Euler} \label{chap:CMD}
+		\input{capitulos/Control_modos_deslizantes}
+		
+		\chapter{Dinámica modelada por cuaterniones} \label{chap:cuaterniones}
+		\input{capitulos/cuaterniones}
+		
+		\chapter{Estimación de los estados} \label{chap:estimacion}
+		\input{capitulos/estimacion_estados}
+		
+	\part{Desarrollo}
+%		\chapter{Introducción a la propuesta de solución} \label{chap:Introducción a la propuesta de solución}
+%		\input{capitulos/Desarrollo_Introduccion}
+		
+		\chapter{Metodología} \label{chap:Metodologia}
+		\input{capitulos/Metodologia}
+		
+		\chapter{Materiales y equipo} \label{chap:Materiales}
+		\input{capitulos/Materiales}
+		
+		\chapter{Avances y resultados} \label{chap:Avances y resultados}
+		\input{capitulos/Avances_resultados}
+		
+%		\chapter{Propuesta de solución}
+%		\chapter{Metodología}
+%		\chapter{Descripción de las actividades a realizar}
+%		\chapter{Cronograma de actividades}
+%		\chapter{Presupuesto requerido (equipo y material de laboratorio)}
+%		\chapter{Pruebas realizadas}
+%		\input{capitulos/Desarrollo}
+		
+	\part{Resultados, conclusiones y recomendaciones}
+		\chapter{Conclusiones y recomendaciones} \label{chap:conclusiones}
+		\input{capitulos/Conclusiones}
+		
+%		\chapter{Competencias desarrolladas y/o aplicadas}
+%		\input{capitulos/competencias-desarrolladas}
+%	
+%	\part{Desarrollo}
+%		\chapter{Procedimiento y descripción de las actividades realizadas}
+%		\input{capitulos/procedimiento-y-descripcion-de-las-actividades-realizadas}
+%		\chapter{Preparación del entorno}\label{chap:preparacion-del-entorno}
+%		\input{capitulos/preparacion_del_entorno}
+%		\chapter{Proyectos similares}\label{chap:proyectos-similares}
+%		\input{capitulos/proyectos-similares}
+%		
+%	\part{Resultados, conclusiones y recomendaciones}
+%		\chapter{Análisis de resultados}
+%		\input{capitulos/14_analisis_de_resultados}
+%		
+%		\chapter{Conclusiones y recomendaciones}\label{chap:conclusiones}
+%		\input{capitulos/21_conclusiones_y_recomendaciones}
+%		
+%		\chapter{Competencias desarrolladas y/o aplicadas}
+%		\input{capitulos/competencias-desarrolladas}
+
+	%\printglossary[title=Glosario,toctitle=Glosario]
+	%linea que anexa la palbra Glosario al índice
+	%\addcontentsline{toc}{chapter}{Glosario}
+	
+	%\printglossary[type=\acronymtype]
+	%linea que anexa la palbra Acrónimo al índice
+	%\addcontentsline{toc}{chapter}{Acrónimos}
+
+%	\part*{Bibliografía y Firmas}
+	\addcontentsline{toc}{part}{Bibliografía y Firmas}
+	%\newpage
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{\titlerule[3pt]~\raisebox{-1.5pt}{\sc{	\appendixname}~\thechapter}~\titlerule[3pt]%
+		\\\vspace{.05cm}\titlerule\\\filcenter #1 \\\vspace{.25cm}\titlerule}
+	
+	
+	
+	%\chapter{\texttt{fly\_bot}}
+	%\input{capitulos/fly-bot}
+	
+%	\part{Manual de uso de Hector quadrotor}\appendix\addappheadtotoc\label{part.manual}
+%		\chapter{Descripción y simulación del modelo de Hector quadrotor}\label{chap:hector-traduccion}
+%		\input{capitulos/hector-traduccion}
+%		
+%		\chapter{\texttt{hector\_quadrotor}}\label{sec.quadrotor}
+%		\input{capitulos/A1_manual}
+%		
+%		\chapter{\texttt{hector\_gazebo}}\label{sec.gazebo}
+%		\input{capitulos/hector-gazebo}
+%		
+%		\chapter{\texttt{hector\_models}}\label{sec.models}
+%		\input{capitulos/hector-models}
+		
+		%\chapter{\texttt{hector\_localization}}\label{sec.localization}
+		%\input{capitulos/hector-localization}
+		
+		%\chapter{\texttt{hector\_slam}}\label{sec.hector.slam}
+		%\input{capitulos/hector-slam}
+	%\input{capitulos/25_anexos}
+	%\chapter{Símbolos}
+	%\listofsymbols\chapter
+	
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{~\raisebox{-1.5pt}{}
+		\\\vspace{.05cm}\titlerule\\\filcenter #1 \\\vspace{.25cm}\titlerule}
+	%{\titlerule\\\vspace{.25cm}\filcenter #1 \\\vspace{.25cm}\titlerule}
+	\bibliographystyle{IEEEtranN}
+	\newpage\label{bibliografia}
+	\addcontentsline{toc}{chapter}{Bibliografía}\bibliography{bibliografia}
+	\pagestyle{plain}
+	\newpage\label{Firmas}
+	\addcontentsline{toc}{chapter}{Firmas}
+	\includepdf[pages=1, fitpaper=true]{portada/Firmas}
+	\spacing{1.5}
+\end{document}
+
+

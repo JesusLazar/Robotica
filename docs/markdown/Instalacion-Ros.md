@@ -1,14 +1,19 @@
-<- Para instalar Ubuntu, regresa a la [Instalación de Ubuntu](Instalacion-Ubuntu-WSL.md).
-- [Instalación de ROS y Gazebo](#instalación-de-ros-y-gazebo)
-  - [Actualiza los paquetes actuales](#actualiza-los-paquetes-actuales)
-  - [Habilita los repositorios requeridos](#habilita-los-repositorios-requeridos)
-  - [Instala ROS 2 y Gazebo](#instala-ros-2-y-gazebo)
-  - [Configura el entorno de ROS 2](#configura-el-entorno-de-ros-2)
-  - [Terminado](#terminado)
+<h1>Instalación de ROS y Gazebo</h1>
 
--> Para instalar MoveIt 2, ve a [Instalación de MoveIt 2](Instalacion-MoveIt.md).
-# Instalación de ROS y Gazebo
-Para configurar ROS, puedes seguir los pasos que aparecen en la [página ofical de ROS](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html), pero aquí lo explicaré para los fines de la clase. Recuerda observar bien si aparece un error.
+Para configurar ROS, puedes seguir los pasos que aparecen en la [página ofical de ROS](https://wiki.ros.org/noetic/Installation/Ubuntu), pero aquí lo explicaré para los fines de la clase. Recuerda que todo se hace en la **terminal de Ubuntu** y observa bien si aparece un error.
+
+También existe otro [tutorial enfocado en robots móviles](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start) (recuerden poner la versión Noetic), pero no será necesario para este proyecto.
+
+<h2>Índice</h2>
+
+<- Para instalar Ubuntu, regresa a la [Instalación de Ubuntu](Instalacion-Ubuntu-WSL.md).
+- [Actualiza los paquetes actuales](#actualiza-los-paquetes-actuales)
+- [Ejecuta el comando de una línea](#ejecuta-el-comando-de-una-línea)
+- [Paquetes extras de ROS y Gazebo](#paquetes-extras-de-ros-y-gazebo)
+- [Configura el entorno de ROS 2](#configura-el-entorno-de-ros-2)
+- [Terminado](#terminado)
+
+-> El siguiente paso es [Exportar SolidWorks a URDF](sw2urdf.md).
 
 ## Actualiza los paquetes actuales
 
@@ -22,45 +27,56 @@ Para configurar ROS, puedes seguir los pasos que aparecen en la [página ofical 
     ```bash
     sudo apt upgrade
     ```
-## Habilita los repositorios requeridos
+## Ejecuta el comando de una línea
 
-1. Habilita el repositorio de Ubuntu Universe, que permite instalar paquetes open source
+Este comando instala todo lo necesario para usar ROS y Gazebo. Si te preguntra qué versión de ROS usar, pon la opción de `ros-noetic-desktop-full` que es la más completa. Tardarán bastante en instalarse, así que hazlo en un lugar donde tengas tiempo y buen internet.
 
-    ```bash
-    sudo apt install software-properties-common
-    sudo add-apt-repository universe
-    ```
-Presiona la tecla ``Intro`` o ``Enter``.
-
-2. Ahora añade la clave GPG de ROS 2 y Gazebo con apt.
-    ```bash
-    sudo apt update && sudo apt install curl -y
-    sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-    sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
-    ```
-3. A continuación, añade los repositorios a tu lista de fuentes.
-    ```bash
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
-    ```
-## Instala ROS 2 y Gazebo
-El paquete completo de ROS 2 (Jazzy Jalisco), Gazebo (Ionic) y las herramientas de desarrollo tardarán bastante en instalarse, así que hazlo en un lugar donde tengas tiempo y buen internet.
 ```bash
-sudo apt update && sudo apt install ros-dev-tools python3-colcon-common-extensions gedit ros-jazzy-desktop lsb-release gnupg ros-jazzy-ros-gz
+wget -c https://raw.githubusercontent.com/qboticslabs/ros_install_noetic/master/ros_install_noetic.sh && chmod +x ./ros_install_noetic.sh && ./ros_install_noetic.sh
 ```
-## Configura el entorno de ROS 2
-Normalmente se tiene que escribir `source /opt/ros/jazzy/setup.bash` cada vez que se quiera configirar el entorno de ROS, pero puedes añadir lo siguiente para que siempre se inicie.
+
+## Paquetes extras de ROS y Gazebo
+Otros paquetes recomendados son los siguientes
 ```bash
-echo "alias sb='source ~/.bashrc'" >> ~/.bashrc
-echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
-echo "export LIBGL_ALWAYS_SOFTWARE=1" >> ~/.bashrc
+sudo apt-get install ros-noetic-joy \
+ros-noetic-teleop-twist-joy \
+ros-noetic-teleop-twist-keyboard \
+ros-noetic-laser-proc \
+ros-noetic-rgbd-launch \
+ros-noetic-rosserial-arduino \
+ros-noetic-rosserial-python \
+ros-noetic-rosserial-client \
+ros-noetic-rosserial-msgs \
+ros-noetic-amcl \
+ros-noetic-map-server \
+ros-noetic-move-base \
+ros-noetic-urdf \
+ros-noetic-xacro \
+ros-noetic-compressed-image-transport \
+ros-noetic-rqt* \
+ros-noetic-rviz \
+ros-noetic-gmapping \
+ros-noetic-navigation \
+ros-noetic-interactive-markers \
+ros-noetic-moveit-setup-assistant \
+sudo apt install python3-catkin-tools \
+gedit
+```
+
+## Configura el entorno de ROS 2
+Normalmente se tiene que escribir `source /opt/ros/noetic/setup.bash` cada vez que se quiera configurar el entorno de ROS, pero puedes añadir lo siguiente para que siempre se inicie.
+```bash
+echo "alias sb='source ~/.bashrc'       #macro para actualizar terminal" >> ~/.bashrc
+echo "source /opt/ros/noetic/setup.bash #usar comandos de ROS Noetic" >> ~/.bashrc
+echo "export LIBGL_ALWAYS_SOFTWARE=1    #Renderizar gráficos por software" >> ~/.bashrc
 echo "export LIBGL_ALWAYS_INDIRECT=0" >> ~/.bashrc
 source ~/.bashrc
 ```
 Si escribes `sb`, se actualizará la terminal, por lo que se recomienda usarlo si se cambia el archivo `.bashrc`, que es la configuración de la terminal.
+
 ## Terminado
 Para probar que se instalaron los paquetes, ejecuta 
 ```bash
-gz sim
+gazebo
 ```
-Y debe abrirse la interfaz de gazebo
+Y debe abrirse la interfaz de gazebo. 

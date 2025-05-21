@@ -22,6 +22,11 @@ __pycache__/
 *.exe
 build/
 dist/
+install/
+log/
+logs/
+devel/
+.catkin_tools/
 
 # Configuración de Visual Studio Code
 .vscode/
@@ -62,6 +67,9 @@ dist/
 *.lof
 *.lot
 *.lol
+*/_minted-Tesis/
+*/build/
+
 
 # Archivos de backup o temporales
 *~
@@ -83,3 +91,10 @@ dist/
 *.nav
 *.snm
 *.vrb
+
+# Otros
+src/matlab/cinematica/cinematica_dir_completo.m
+src/matlab/cinematica/cinematica_inv_completo.mlx
+test/pruebaCinematicaDirecta.m
+era_robot/
+test/python_cinematica_inversa.ipynb

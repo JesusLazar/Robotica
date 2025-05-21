@@ -29,14 +29,23 @@ NGDL = size(dh,1);  % Número de eslabones/juntas
 % Preasignar vectores para los límites de articulación
 qMin = zeros(NGDL,1);
 qMax = qMin;
+dqMax = qMin;
+ddqMax = qMin;
+q = qMin;
 for i = 1:NGDL
     switch tipo(i)
         case 'r'    % Para juntas revolutas: se convierten los valores a radianes
             qMin(i) = deg2rad(dh.min(i));
             qMax(i) = deg2rad(dh.max(i));
+            dqMax(i) = deg2rad(dh.dqmax(i));
+            ddqMax(i) = deg2rad(dh.ddqmax(i));
+            q(i) = theta(i);
         case 'p'    % Para juntas prismáticas: se mantienen en unidades lineales
             qMin(i) = dh.min(i);
             qMax(i) = dh.max(i);
+            dqMax(i) = dh.dqmax(i);
+            ddqMax(i) = dh.ddqmax(i);
+            q(i) = d(i);
         otherwise
             error("Debes usar 'r' para una articulación de revoluta" + ...
               " y 'p' para una articulación prismática.")
@@ -44,14 +53,17 @@ for i = 1:NGDL
 end
 
 robot = struct( ...
-        'theta', theta, ...     (nx1) Rotaciones en Z
-        'd', d, ...             (nx1) Traslaciones en Z
-        'a', a, ...             (nx1) Traslaciones en X
-        'alpha', alpha, ...     (nx1) Rotaciones en X
-        'qMin', qMin, ...       (nx1) Límite inferior de articulación
-        'qMax', qMax, ...       (nx1) Límite superior de articulación
-        'NGDL', NGDL, ...       (1) Número de eslabones/juntas
-        'tipo', tipo, ...       (nx1) Tipo de articulación, 'p' para prismátyica y 'r' para revoluta
-        'A0', A0, ...           (4x4) Matriz de transformación homogenea inicial
-        'T', zeros(4,4,NGDL));% (4x4xn) Matriz de transformación homogenea de cada paso
+        'theta', theta, ...       (nx1) Rotaciones en Z
+        'd', d, ...               (nx1) Traslaciones en Z
+        'a', a, ...               (nx1) Traslaciones en X
+        'alpha', alpha, ...       (nx1) Rotaciones en X
+        'qMin', qMin, ...         (nx1) Límite inferior de articulación
+        'qMax', qMax, ...         (nx1) Límite superior de articulación
+        'dqMax', dqMax, ...       (nx1) Velocidad máxima de articulación
+        'ddqMax', ddqMax, ...     (nx1) Aceleración máxima de articulación
+        'NGDL', NGDL, ...         (1) Número de eslabones/juntas
+        'tipo', tipo, ...         (nx1) Tipo de articulación, 'p' para prismátyica y 'r' para revoluta
+        'A0', A0, ...             (4x4) Matriz de transformación homogenea inicial
+        'T', zeros(4,4,NGDL), ...(4x4xn) Matriz de transformación homogenea de cada paso
+        'q', q);
         

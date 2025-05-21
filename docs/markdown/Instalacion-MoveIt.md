@@ -4,6 +4,9 @@
 - [Crea un Workspace de Colcon y descarga los tutoriales](#crea-un-workspace-de-colcon-y-descarga-los-tutoriales)
 - [Compila (build) tu Workspace de Colcon](#compila-build-tu-workspace-de-colcon)
 - [Configurar el Workspace de Colcon](#configurar-el-workspace-de-colcon)
+
+-> Para exportar el robot de SolidWorks a URDF, ve a [SolidWorks2URDF](sw2urdf.md).
+
 # Instalación de Move It 2
 MoveIt es una plataforma que permite configurar de forma más sencilla los robots para la planificación del movimiento, manipulación, percepción 3D, cinemática, control y navegación.
 Lo mostrado aquí se puede encontrar en el [Tutorial de MoveIt](https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html).\

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="era_description">
+  <link
+    name="link_0">
+    <inertial>
+      <origin
+        xyz="8.1811E-06 0.064148 0.028491"
+        rpy="0 0 0" />
+      <mass
+        value="1.4573" />
+      <inertia
+        ixx="0.0028441"
+        ixy="-6.1635E-07"
+        ixz="9.4583E-08"
+        iyy="0.0021256"
+        iyz="-2.3032E-05"
+        izz="0.0044372" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_0.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_0.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="1.4751E-06 8.8702E-05 0.1103"
+        rpy="0 0 0" />
+      <mass
+        value="4.9252" />
+      <inertia
+        ixx="0.0070331"
+        ixy="-3.8633E-07"
+        ixz="-3.054E-07"
+        iyy="0.0097895"
+        iyz="7.2357E-06"
+        izz="0.0085832" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_0" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1416"
+      upper="3.1416"
+      effort="7.1537"
+      velocity="0.2188" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="-1.2948E-05 -0.094414 0.0093196"
+        rpy="0 0 0" />
+      <mass
+        value="2.9774" />
+      <inertia
+        ixx="0.0062534"
+        ixy="7.0718E-06"
+        ixz="1.2358E-05"
+        iyy="0.0039574"
+        iyz="-3.5071E-05"
+        izz="0.0057159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.18918"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="86.211"
+      velocity="0.1163" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="-0.00037089 0.21175 -0.0022929"
+        rpy="0 0 0" />
+      <mass
+        value="1.4008" />
+      <inertia
+        ixx="0.0041861"
+        ixy="2.726E-05"
+        ixz="9.3379E-06"
+        iyy="0.00049492"
+        iyz="-0.00018761"
+        izz="0.0042431" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0.00012374 -0.25568 0.00149"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.927"
+      upper="0.7854"
+      effort="24.654"
+      velocity="0.0635" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="-7.0469E-06 -0.0073794 0.4189"
+        rpy="0 0 0" />
+      <mass
+        value="0.34675" />
+      <inertia
+        ixx="0.0001352"
+        ixy="3.0244E-08"
+        ixz="-7.1861E-08"
+        iyy="0.0001737"
+        iyz="1.6894E-05"
+        izz="0.00010582" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1416"
+      upper="3.1416"
+      effort="15.93"
+      velocity="0.0982" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="0.0606472275187821 9.21812568499547E-08 -0.00174871909358244"
+        rpy="0 0 0" />
+      <mass
+        value="0.155635640889723" />
+      <inertia
+        ixx="0.00017520277960928"
+        ixy="-3.98455352347032E-07"
+        ixz="-9.07655924949397E-06"
+        iyy="0.000134532482619006"
+        iyz="1.05209048124804E-08"
+        izz="0.00010461221367687" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="0 0 0.4284"
+      rpy="-1.5708 0 -3.1416" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.1416"
+      upper="0"
+      effort="3.5"
+      velocity="7.48" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_6_1">
+    <inertial>
+      <origin
+        xyz="8.8999E-07 -0.028749 0.015149"
+        rpy="0 0 0" />
+      <mass
+        value="0.019387" />
+      <inertia
+        ixx="1.6008E-05"
+        ixy="2.8705E-09"
+        ixz="-1.7551E-09"
+        iyy="1.1841E-05"
+        iyz="2.6004E-06"
+        izz="2.5312E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_6_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_6_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6_1"
+    type="prismatic">
+    <origin
+      xyz="0.16115 0 0"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.016"
+      effort="218.75"
+      velocity="0.1197" />
+    <dynamics
+      damping="0"
+      friction="0" />
+  </joint>
+  <link
+    name="link_6_2">
+    <inertial>
+      <origin
+        xyz="4.2572E-06 -0.0288 0.013728"
+        rpy="0 0 0" />
+      <mass
+        value="0.019424" />
+      <inertia
+        ixx="1.6036E-05"
+        ixy="-5.7669E-10"
+        ixz="2.141E-09"
+        iyy="1.1905E-05"
+        iyz="2.5998E-06"
+        izz="2.5404E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_6_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://era_description/meshes/link_6_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6_2"
+    type="prismatic">
+    <origin
+      xyz="0.16115 0 0"
+      rpy="-3.1416 0 1.5708" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.016"
+      effort="218.75"
+      velocity="0.1197" />
+    <dynamics
+      damping="0"
+      friction="0" />
+    <mimic
+      joint="joint_6_1"
+      multiplier="1"
+      offset="0" />
+  </joint>
+</robot>
