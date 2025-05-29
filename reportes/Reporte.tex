@@ -1,0 +1,111 @@
+%\documentclass{clases}
+\documentclass[a4paper,12pt, oneside]{book}
+\input{clases}
+
+\begin{document}
+	% Aquí se encuentra el archivo con la portada
+	\input{portada/portada}
+
+	\onehalfspacing
+	\frontmatter
+	\pagestyle{plain}  % numeración en páginas preliminares
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{~\raisebox{-1.5pt}{}
+	\\\filleft #1 \\\vspace{.25cm}\titlerule[1.5pt]}
+	
+	% ---------------------------------------
+	% índices
+%	\clearpage   % o \cleardoublepage, según prefieras
+	\newpage
+	\phantomsection    % crea un nuevo destino para hyperref
+	\addcontentsline{toc}{chapter}{Índice general}
+	\tableofcontents
+	
+%	\clearpage
+	\newpage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Índice de figuras}
+	\listoffigures
+	
+	\hypersetup{
+		linkcolor=red
+	}
+	
+	% ---------------------------------------
+	% Estilo de encabezado y pie de página
+	\mainmatter
+	\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[L]{\leftmark}
+	\fancyhead[R]{}
+	\fancyfoot[L]{\parbox[l]{\textwidth-1cm}{\rightmark}}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage}
+	\renewcommand{\footrulewidth}{0.5pt}
+	%\fancyfoot[RO,LE]{Diseño de modelo para simulación 3D de VANT tipo cuadricóptero}
+	
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{\titlerule[3pt]~\raisebox{-1.5pt}{\sc{\chaptername}~\thechapter}~\titlerule[3pt]%
+		\\\vspace{.05cm}\titlerule\\\filcenter #1 \\\vspace{.25cm}\titlerule}
+	
+	% Capítulo 1: Introducción
+	\input{capitulos/Introduccion}
+	
+	% Capítulo 2: Marco Teórico
+	\input{capitulos/Marco_teorico/Introduccion}
+	
+		\input{capitulos/Marco_teorico/Cinematica}
+		
+		\input{capitulos/Marco_teorico/ROS}
+		
+		\input{capitulos/Marco_teorico/Dinamica}
+		
+		\input{capitulos/Marco_teorico/Control}
+	
+	% Capítulo 3: Desarrollo
+	\input{capitulos/Desarrollo/Introduccion}
+	
+		\input{capitulos/Desarrollo/Caracteristicas/Caracteristicas_Robot}
+		
+			\input{capitulos/Desarrollo/Caracteristicas/Partes}
+			
+			\input{capitulos/Desarrollo/Caracteristicas/Limites_propiedades}
+		
+		\input{capitulos/Desarrollo/Proceso_Cinematica}
+		
+		\input{capitulos/Desarrollo/Control}
+		
+		\input{capitulos/Desarrollo/Simulación}
+	
+	% Capítulo 4: Resultados
+	\input{capitulos/Resultados}
+	
+	% Capítulo 5: Conclusiones
+	\chapter{Conclusiones} \label{sec:conclusiones}
+	\input{capitulos/Conclusiones/Conclusion_1}
+	\input{capitulos/Conclusiones/Conclusion_2}
+	\input{capitulos/Conclusiones/Conclusion_3}
+	\input{capitulos/Conclusiones/Conclusion_4}
+		
+	\titleformat{\chapter}
+	{\bfseries\huge}
+	{}
+	{0pt}
+	{~\raisebox{-1.5pt}{}
+		\\\vspace{.05cm}\titlerule\\\filcenter #1 \\\vspace{.25cm}\titlerule}
+	%{\titlerule\\\vspace{.25cm}\filcenter #1 \\\vspace{.25cm}\titlerule}
+	\bibliographystyle{IEEEtranN}
+	\newpage\label{bibliografia}
+	\addcontentsline{toc}{chapter}{Bibliografía}
+	
+	% Pulsa Ctrl + Clic Izquierdo en bibliografia para entrar.
+	\bibliography{bibliografia}
+\end{document}
+
+
