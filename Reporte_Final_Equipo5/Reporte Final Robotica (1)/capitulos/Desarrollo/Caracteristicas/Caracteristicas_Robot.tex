@@ -1,0 +1,38 @@
+\section{Características del Robot} \label{sec:caracteristicas_del_robot}
+
+El primer paso consistió en analizar la estructura del robot y definir su configuración geométrica mediante la \textbf{tabla de Denavit-Hartenberg (DH)}. Este paso fue fundamental, ya que permitió establecer los parámetros necesarios para describir la posición y orientación relativa entre los eslabones del robot.
+
+\begin{table}[H]
+	\centering
+	\caption{Parámetros Denavit-Hartenberg del robot KUKA KR-16}
+	\label{tab:dh_kuka}
+	\begin{tabular}{c|c|c|c|c|c|c|c|c}
+		\toprule
+		$i$ & $\theta$ ($^\circ$) & $d$ (mm) & $a$ (mm) & $\alpha$ ($^\circ$) & Tipo & $\theta_{min}$ ($^\circ$) & $\theta_{max}$ ($^\circ$) & Velocidad ($^\circ$/s) \\
+		\midrule
+		1 & 0    & 675  & 260  & -90  & r & -185 & 185  & 156 \\
+		2 & 0    & 680  & 0    & -155 & r & -155 & 35   & 156 \\
+		3 & -90  & 0    & 0    & -90  & r & -130 & 154  & 156 \\
+		4 & 0    & -670 & 0    & -90  & r & -350 & 350  & 330 \\
+		5 & 0    & 0    & 0    & -90  & r & -130 & 130  & 330 \\
+		6 & 0    & -158 & 180  & -350 & r & -350 & 350  & 615 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\bigskip
+\noindent
+\textbf{Donde:}
+\begin{description}
+	\item[N] Número de la articulación.
+	\item[\(\theta\)] Ángulo articular (grados).
+	\item[\(d\)] Desplazamiento a lo largo del eje \(z\) (milímetros).
+	\item[\(a\)] Longitud del eslabón (milímetros).
+	\item[\(\alpha\)] Ángulo entre ejes \(z\) consecutivos (grados).
+	\item[Tipo] ‘r’ para articulación rotacional.
+	\item[\(q_{\min}\), \(q_{\max}\)] Límites de posición (grados).
+
+\end{description}
+
+

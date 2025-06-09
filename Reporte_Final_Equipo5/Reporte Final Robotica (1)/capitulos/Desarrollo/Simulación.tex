@@ -1,0 +1,15 @@
+\section{Simulación} \label{sec:simulacion}
+
+Para la simulación del robot se siguieron los pasos descritos en el tutorial disponible en el repositorio de GitHub \cite{medinagl_robotica} \href{https://github.com/IvanMedinaGL/Robotica}{https://github.com/IvanMedinaGL/Robotica}.
+
+El modelo del robot se obtuvo inicialmente en \textit{SolidWorks}, desde donde se exportó a formato \textit{URDF} (Unified Robot Description Format), que es compatible con las herramientas de simulación en ROS.
+
+La simulación se realizó en un entorno basado en \textit{Ubuntu}, utilizando una máquina virtual con \textit{VirtualBox}, aunque también es posible ejecutar el entorno mediante \textit{Windows Subsystem for Linux} (WSL) para usuarios de Windows.
+
+Para probar el funcionamiento, se simuló el movimiento simultáneo de las dos pinzas del robot, logrando controlar ambas de manera coordinada. Además, se exploró la inclusión de un electroimán para la manipulación de objetos, aunque esta parte está aún en desarrollo.
+
+Se modificaron los controladores predeterminados para adecuarlos a la dinámica del robot y al comportamiento esperado, ejecutando finalmente la simulación con las herramientas de visualización y control más comunes: \textit{RViz}, \textit{Gazebo} y \textit{MoveIt!}.
+
+Estas herramientas permitieron visualizar la cinemática, planificar trayectorias y verificar la correcta interacción entre las partes móviles del robot en un entorno virtual.
+
+Más detalles sobre la configuración, instalación y ejecución de la simulación pueden consultarse directamente en el repositorio mencionado.

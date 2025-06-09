@@ -1,0 +1,104 @@
+\chapter{Resultados} \label{chap:resultados}
+En este capítulo se presentan los resultados obtenidos durante la implementación y simulación del robot. Se muestran las salidas de la cinemática directa e inversa, las gráficas que describen el comportamiento de las articulaciones, y la validación de la simulación en entorno virtual.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../501289512_1030174882084249_9101665985105919383_n}
+	\caption{}
+	\label{fig:50128951210301748820842499101665985105919383n}
+\end{figure}
+
+
+
+\section{Cinemática Directa}
+
+La cinemática directa permite obtener la posición y orientación del efector final a partir de los ángulos articulares. 
+
+A continuación se presentan las configuraciones espaciales calculadas para diferentes posiciones articulares, demostrando la precisión del modelo y su correcta implementación.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494824317_1444026277012878_2465681822553122772_n}
+	\caption{}
+	\label{fig:49482431714440262770128782465681822553122772n}
+\end{figure}
+
+Los resultados muestran que el robot alcanza las posiciones esperadas conforme a la trayectoria generada, validando el modelo DH y la matriz homogénea inicial utilizada.
+
+\section{Cinemática Inversa}
+
+La cinemática inversa permite determinar los ángulos articulares que debe adoptar el robot para alcanzar una posición y orientación deseada del efector final. 
+
+En este proyecto, se implementó una función iterativa que ajusta los valores de las articulaciones hasta alcanzar la posición objetivo con una tolerancia definida. Esta función utiliza un modelo basado en el Jacobiano y se detiene cuando se alcanza la tolerancia o el número máximo de iteraciones.
+
+A continuación, se muestra una gráfica de la trayectoria deseada frente a la trayectoria real obtenida a través de la solución de la cinemática inversa:
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494822215_569383659201449_4831555420233948294_n}
+	\caption{}
+	\label{fig:4948222155693836592014494831555420233948294n}
+\end{figure}
+
+
+
+\section{Cinemática Diferencial}
+
+La cinemática diferencial relaciona las velocidades articulares con la velocidad del efector final, siendo fundamental para el control y la planificación dinámica.
+
+En la siguiente gráfica se presenta la evolución de las velocidades lineales y angulares del efector durante el movimiento cíclico de las articulaciones.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494860605_1270406011321680_2515407621569777704_n}
+	\caption{}
+	\label{fig:49486060512704060113216802515407621569777704n}
+\end{figure}
+
+
+
+Los datos confirman que la velocidad del efector responde adecuadamente a los cambios en las velocidades articulares, lo que es esencial para el seguimiento de trayectorias suaves.
+
+\section{Gráficas de las Articulaciones}
+
+Se muestran las gráficas de las posiciones angulares de las articulaciones a lo largo del tiempo, junto con sus velocidades y aceleraciones, obtenidas mediante la trayectoria programada.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494820732_1414021652877929_4111381788106881331_n}
+	\caption{}
+	\label{fig:49482073214140216528779294111381788106881331n}
+\end{figure}
+
+
+Las gráficas reflejan el movimiento cíclico con un periodo de 2 segundos, confirmando la correcta generación y ejecución de la trayectoria.
+
+\section{Simulación}
+
+Finalmente, se validó el comportamiento del robot mediante simulación en entorno virtual, utilizando herramientas como \textit{Gazebo}, \textit{RViz} y \textit{MoveIt!}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494817014_1795811371279923_6575303978208375908_n}
+	\caption{}
+	\label{fig:49481701417958113712799236575303978208375908n}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\linewidth]{../494823569_1884423959049659_5086006415803663602_n}
+	\caption{}
+	\label{fig:49482356918844239590496595086006415803663602n}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{../502117343_1786009252327352_787892156864766060_n}
+	\caption{}
+	\label{fig:5021173431786009252327352787892156864766060n}
+\end{figure}
+
+
+La simulación confirma la coordinación entre las articulaciones y la correcta ejecución de la cinemática programada, incluyendo el movimiento simultáneo de las dos pinzas.
+
+Además, se exploró la integración de actuadores adicionales como el electroimán, lo cual se encuentra en etapa experimental.

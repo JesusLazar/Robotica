@@ -1,0 +1,88 @@
+\subsection{Partes} \label{subsec:partes}
+\subsection*{Componentes principales del robot KUKA KR 16}
+
+El robot KUKA KR 16 es un manipulador industrial de seis grados de libertad. A continuación, se describen brevemente sus principales componentes:
+
+\begin{itemize}
+	\item \textbf{Base (Eje 1):} Es la estructura fija sobre la que se monta el robot. Contiene el motor del primer eje, permitiendo rotación horizontal del brazo completo.
+	
+	\item \textbf{Eje 2 (Brazo inferior):} Conecta la base con el brazo superior. Este eje permite un movimiento similar al de un codo, desplazando el brazo hacia adelante y hacia atrás.
+	
+	\item \textbf{Eje 3 (Brazo superior):} Proporciona movimiento vertical adicional, incrementando el alcance en altura.
+	
+	\item \textbf{Eje 4 (Muñeca rotacional):} Permite la rotación del extremo del brazo sobre su propio eje, facilitando la orientación de la herramienta.
+	
+	\item \textbf{Eje 5 (Muñeca de inclinación):} Controla la inclinación hacia arriba o abajo del efector final, aportando mayor precisión de orientación.
+	
+	\item \textbf{Eje 6 (Muñeca de rotación final):} Permite una rotación axial adicional del efector final, crucial para tareas como ensamblado o soldadura.
+	
+	\item \textbf{Brida de montaje (flange):} Es la interfaz mecánica donde se monta la herramienta o efector final (pinzas, sensores, etc.).
+	
+	\item \textbf{Cables y conexiones:} Incluye tanto cableado interno como externo para transmisión de señales y potencia entre los actuadores, sensores y el controlador.
+	
+	\item \textbf{Controlador KR C4:} Es la unidad de procesamiento y control del robot. Ejecuta programas, regula el movimiento de los motores y gestiona entradas/salidas.
+	
+\end{itemize}
+
+\textbf{Especificaciones técnicas destacadas:}
+\begin{itemize}
+	\item Grados de libertad: 6 (todos rotacionales).
+	\item Alcance máximo: 1612 mm.
+	\item Carga útil nominal: 16 kg.
+	\item Repetibilidad: $\pm$0.04 mm.
+	\item Montaje: suelo, techo o pared.
+	\item Protección: IP65 para el cuerpo del robot e IP65 para la muñeca.
+\end{itemize}
+
+\subsubsection{Motores} \label{subsubsec:motores}
+	\begin{itemize}
+		\item \textbf{Motor utilizado:} Servomotor SG90 (referencia a la hoja de datos del fabricante: TowerPro SG90).
+		
+		\item \textbf{Características principales:}
+		\begin{itemize}
+			\item \textbf{Masa:} 9 gramos.
+			\item \textbf{Torque máximo:} 2.5 kg·cm (aproximadamente 0.245 Nm).
+			\item \textbf{Velocidad máxima:} 0.1 s/60° a 4.8V.
+			\item \textbf{Voltaje de operación:} 4.8V – 6V.
+		\end{itemize}
+		
+		\item \textbf{Transmisiones y reductores:}
+		\begin{itemize}
+			\item Los motores están acoplados a engranajes internos tipo corona para reducir velocidad y aumentar torque.
+			\item Las pinzas cuentan con una transmisión mecánica simple de tipo tornillo sin fin.
+			\item \textbf{Razón de reducción estimada:} 10:1.
+		\end{itemize}
+		
+		\item \textbf{Distribución de los motores en el robot:}
+		\begin{itemize}
+			\item \textbf{Motor 1:} Base del robot – permite giro horizontal.
+			\item \textbf{Motor 2:} Articulación del brazo – controla elevación y descenso.
+			\item \textbf{Motor 3:} Pinza – apertura y cierre mediante engranaje y reductor.
+		\end{itemize}
+		
+	\end{itemize}
+	
+\end{frame}
+
+\subsubsection{Eslabones} \label{subsubsec:eslabones}
+	
+	\textbf{Características físicas de los eslabones:}
+	
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\textbf{Eslabón} & \textbf{Masa (g)} & \textbf{Longitud (cm)} & \textbf{Material} & \textbf{Inercia (g·cm\textsuperscript{2})} \\
+			\hline
+			1 & 50 & 10 & PLA (impresión 3D) & 42.0 \\
+			2 & 65 & 12 & PLA (impresión 3D) & 58.5 \\
+			3 & 40 & 8  & PLA (impresión 3D) & 26.0 \\
+			\hline
+		\end{tabular}
+		\caption{Parámetros físicos de cada eslabón del robot}
+	\end{table}
+	
+	\vspace{0.3cm}
+	\textbf{Nota:} La inercia fue estimada considerando cuerpos cilíndricos y distribución uniforme de masa.
+	
+\end{frame}

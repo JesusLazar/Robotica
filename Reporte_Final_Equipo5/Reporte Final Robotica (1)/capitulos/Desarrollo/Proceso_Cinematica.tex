@@ -1,0 +1,65 @@
+\section{Proceso de Cinemática} \label{sec:proceso_cinematica}
+
+En esta sección se describe el proceso para calcular las diferentes etapas de la cinemática del robot desarrollado, el cual fue descargado inicialmente de internet y adaptado para nuestro uso. Todo el código está disponible en el repositorio de GitHub, por lo que aquí se presentarán solo las partes más relevantes para la comprensión del trabajo.
+
+\subsection{Cinemática Directa}
+
+La cinemática directa se encarga de obtener la posición y orientación del efector final del robot dada una configuración específica de sus articulaciones.
+
+Una parte fundamental del código consiste en crear la matriz homogénea de referencia inicial, que representa la orientación y posición del efector al inicio del movimiento. Para ello, se utiliza la función \texttt{euler2rotMat} que convierte ángulos de Euler a una matriz de rotación:
+
+\begin{matlabcode}{matlab}
+	R_inicial = euler2rotMat(orientacion_inicial, secuencia);
+	Matriz_cero = [0 0 0];
+	A0 = [R_inicial posicion_inicial;
+	Matriz_cero 1];
+\end{matlabcode}
+
+Aquí, \texttt{A0} representa la matriz homogénea inicial, donde \texttt{posicion_inicial} es un vector con la posición en el espacio y \texttt{R_inicial} la orientación asociada.
+
+Posteriormente, se leen los parámetros de Denavit-Hartenberg desde un archivo CSV para configurar el robot y sus límites de movimiento:
+
+\begin{matlabcode}{matlab}
+	dh = readtable('datos\tabla_DH\robotFinal.csv');
+	robot = crear_robot(dh, A0);
+\end{matlabcode}
+
+Con el robot definido, se genera una trayectoria periódica para las articulaciones, con un período de 2 segundos:
+
+\begin{matlabcode}{matlab}
+	periodo = 2;    % Periodo del movimiento cíclico
+	[q, dq, ddq] = trayectoria_q(robot, t, periodo);
+\end{matlabcode}
+
+Esto permite que las articulaciones realicen un movimiento repetitivo, facilitando el análisis del comportamiento dinámico y la validación de la cinemática.
+
+Los resultados y gráficos relacionados se pueden consultar en el capítulo \autoref{chap:resultados}.
+
+\subsection{Cinemática Diferencial}
+
+La cinemática diferencial permite relacionar las velocidades articulares con la velocidad lineal y angular del efector final. En el código, se calcula el Jacobiano del robot para determinar estas relaciones.
+
+Una parte clave del código es la función que calcula el Jacobiano y lo usa para obtener las velocidades del efector a partir de las velocidades articulares:
+
+\begin{matlabcode}{matlab}
+	J = calcular_jacobiano(robot, q);
+	v_efector = J * dq;
+\end{matlabcode}
+
+Esto es fundamental para control y seguimiento de trayectoria, así como para análisis de singularidades y manipulabilidad.
+
+Los detalles de implementación y resultados gráficos se encuentran en el capítulo \autoref{chap:resultados}.
+
+\subsection{Cinemática Inversa}
+
+Para la cinemática inversa, se busca calcular los valores de las articulaciones que lleven al efector a una posición y orientación deseadas. El método implementado utiliza un algoritmo iterativo con control de convergencia.
+
+La función principal recibe como entradas el robot, la posición deseada, la tolerancia, el máximo número de iteraciones, el parámetro de ajuste y el número de muestras:
+
+\begin{matlabcode}{matlab}
+	function [q_sol, p_sol] = cinematica_inv(r, p_des, tol, max_iter, alpha, numMuestras)
+\end{matlabcode}
+
+Este algoritmo itera ajustando las articulaciones hasta que la posición obtenida esté dentro de la tolerancia requerida o se alcance el número máximo de iteraciones.
+
+Los resultados de este procedimiento, así como las gráficas de convergencia y trayectorias, están documentados en el capítulo \autoref{chap:resultados}.

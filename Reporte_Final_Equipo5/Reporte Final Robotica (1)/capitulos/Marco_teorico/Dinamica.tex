@@ -1,0 +1,140 @@
+\section{Dinámica} \label{sec:dinamica}
+
+En robótica, el estudio de la dinámica es crucial para modelar, simular y controlar el comportamiento de un robot. Permite predecir cómo responderá un robot a ciertas fuerzas, cómo se moverán sus partes articuladas y cómo mantener la estabilidad al realizar tareas complejas.
+
+La dinámica robótica considera:
+
+Modelos dinámicos del robot (incluyendo masa, centros de masa, inercia, par de motores, fricción).
+
+Ecuaciones de movimiento basadas en la formulación de Euler-Lagrange o la formulación de Newton-Euler, que describen cómo las fuerzas y momentos aplicados generan aceleraciones y movimientos.
+
+Control de movimiento dinámico, como el control de par, el control por impedancia/admitancia, o el control dinámico inverso, que permite movimientos suaves, seguros y adaptativos.
+
+Estas ecuaciones permiten diseñar controladores robustos, como los utilizados en brazos robóticos industriales, exoesqueletos, robots bípedos o manipuladores móviles.
+
+
+\subsection{Matriz de masa o inercia}
+
+En el estudio de la dinámica robótica, la matriz de masa o inercia, denotada como $\mathbf{M}(q)$, representa cómo la masa y su distribución afectan el movimiento de un sistema robótico en función de su configuración articular $q$. Esta matriz es una parte esencial del modelo dinámico del robot y aparece en la ecuación general del movimiento:
+
+\[
+\mathbf{M}(q)\ddot{q} + \mathbf{C}(q, \dot{q})\dot{q} + \mathbf{G}(q) = \boldsymbol{\tau}
+\]
+
+donde $\ddot{q}$ representa las aceleraciones articulares, $\dot{q}$ las velocidades, $\mathbf{C}$ los efectos centrífugos y de Coriolis, $\mathbf{G}$ las fuerzas de gravedad, y $\boldsymbol{\tau}$ los torques aplicados por los actuadores.
+
+Bajo la simplificación de ausencia de fuerzas externas, la aceleración máxima alcanzable por una articulación está dada por:
+
+\[
+\ddot{q}_{\text{máx}} = \mathbf{M}^{-1}(q) \boldsymbol{\tau}_{\text{máx}}
+\]
+
+Esto implica que la aceleración que puede alcanzar el robot está directamente determinada por la inversa de la matriz de inercia y el torque máximo disponible. Una mayor inercia (masa concentrada o distribución desfavorable) reducirá la aceleración que puede generarse con un mismo torque. Además, debido al acoplamiento dinámico entre articulaciones, la matriz de inercia puede contener términos no diagonales que indican cómo el movimiento de una articulación influye en otras.
+
+Comprender y modelar correctamente la matriz de inercia es fundamental para el diseño de controladores dinámicos, simulaciones físicas realistas y sistemas robóticos seguros y eficientes.
+
+
+\subsection{Matriz de coriolis}
+
+La matriz de Coriolis, representada como $\mathbf{C}(q, \dot{q})$, forma parte del modelo dinámico de un robot y está asociada a los efectos centrífugos y de Coriolis que aparecen cuando el sistema está en movimiento. Esta matriz aparece en la ecuación dinámica general:
+
+\[
+\mathbf{M}(q)\ddot{q} + \mathbf{C}(q, \dot{q})\dot{q} + \mathbf{G}(q) = \boldsymbol{\tau}
+\]
+
+donde $\mathbf{M}(q)$ es la matriz de inercia, $\ddot{q}$ y $\dot{q}$ son la aceleración y velocidad articulares, $\mathbf{G}(q)$ representa los efectos gravitacionales, y $\boldsymbol{\tau}$ es el vector de torques actuadores.
+
+La matriz $\mathbf{C}(q, \dot{q})$ modela las **fuerzas y torques no lineales** que surgen debido al movimiento conjunto de varias articulaciones. Estas fuerzas incluyen:
+\begin{itemize}
+	\item \textbf{Fuerzas centrífugas}, que aparecen en sistemas giratorios incluso si las velocidades angulares son constantes.
+	\item \textbf{Fuerzas de Coriolis}, que dependen de la interacción entre velocidades articulares, típicamente representadas como términos bilineales en $\dot{q}$.
+\end{itemize}
+
+La matriz de Coriolis no es única, pero debe cumplir con ciertas propiedades para garantizar la estabilidad del sistema, como que la matriz $\dot{\mathbf{M}}(q) - 2\mathbf{C}(q, \dot{q})$ sea antisimétrica.
+
+Computacionalmente, los elementos de $\mathbf{C}(q, \dot{q})$ pueden calcularse a partir de los coeficientes de Christoffel derivados de la matriz de inercia:
+
+\[
+C_{ijk} = \frac{1}{2} \left( \frac{\partial M_{ij}}{\partial q_k} + \frac{\partial M_{ik}}{\partial q_j} - \frac{\partial M_{jk}}{\partial q_i} \right)
+\]
+
+y luego combinados con las velocidades:
+
+\[
+C_{ij} = \sum_{k=1}^{n} C_{ijk} \dot{q}_k
+\]
+
+La inclusión de esta matriz en simulaciones y controladores permite compensar correctamente los efectos dinámicos en robots en movimiento, mejorando la precisión del control, especialmente a altas velocidades o en sistemas con brazos largos o cargas pesadas. Es un componente fundamental en técnicas de control dinámico inverso y control robusto.
+
+
+
+\subsection{Vector de gravedad}
+
+Cuando el robot está extendido horizontalmente, el vector de gravedad tiene su mayor efecto sobre el sistema debido al momento que genera respecto al eje de rotación de cada articulación. En esta posición, el centro de masa del brazo robótico (o del sistema en general) está más alejado del eje base, lo que incrementa el \textbf{momento de torsión (torque)} requerido para mantener la posición o mover el brazo.
+
+El \textbf{momento generado por la gravedad} se calcula como:
+
+\begin{equation}
+	\tau = r \times F_g = r \cdot m \cdot g \cdot \sin(\theta)
+\end{equation}
+
+Donde:
+\begin{itemize}
+	\item $\tau$ es el torque debido al peso,
+	\item $r$ es la distancia desde el eje de rotación al centro de masa,
+	\item $m$ es la masa del segmento,
+	\item $g$ es la aceleración gravitacional,
+	\item $\theta$ es el ángulo entre el brazo y la dirección vertical (siendo $90^\circ$ cuando está horizontal).
+\end{itemize}
+
+Cuando el brazo está completamente horizontal ($\theta = 90^\circ$), se cumple que $\sin(\theta) = 1$, y por lo tanto el torque alcanza su valor máximo:
+
+\begin{equation}
+	\tau_{\text{máx}} = r \cdot m \cdot g
+\end{equation}
+
+Este torque debe ser completamente contrarrestado por la fuerza generada por los motores, ya que, de lo contrario, el brazo caerá bajo el efecto de la gravedad. Si los motores no generan suficiente torque, no podrán sostener o mover el brazo en esta posición. Por eso, es fundamental dimensionar correctamente los motores considerando este escenario crítico.
+
+
+\subsection{Fricción}
+
+La \textbf{fricción} es una fuerza que se opone al movimiento relativo entre dos superficies en contacto. Es una fuerza de resistencia que actúa en dirección contraria al desplazamiento o intento de desplazamiento de un objeto.
+
+\subsection{Tipos de fricción}
+\begin{itemize}
+	\item \textbf{Fricción estática:} Se presenta cuando un objeto está en reposo, y es la fuerza que debe superarse para que comience a moverse. Generalmente, es mayor que la fricción cinética.
+	
+	\item \textbf{Fricción cinética (o dinámica):} Ocurre cuando el objeto ya está en movimiento. Esta fricción sigue actuando en contra del movimiento y su valor es constante y menor que el de la fricción estática.
+	
+	\item \textbf{Fricción por rodadura:} Se da cuando un objeto rueda sobre una superficie, como una llanta o un rodillo. Suele ser mucho menor que la fricción por deslizamiento.
+\end{itemize}
+
+\subsection{Factores que afectan la fricción}
+\begin{itemize}
+	\item La naturaleza de las superficies (rugosidad o tipo de material).
+	\item La fuerza normal (la fuerza perpendicular entre las superficies en contacto).
+\end{itemize}
+
+Cabe mencionar que, en condiciones ideales, la fricción no depende del área de contacto ni de la velocidad de movimiento.
+
+\subsection{Fórmula general de la fricción}
+La fuerza de fricción se puede calcular mediante la siguiente expresión:
+
+\begin{equation}
+	f = \mu \cdot N
+\end{equation}
+
+Donde:
+\begin{itemize}
+	\item $f$ es la fuerza de fricción,
+	\item $\mu$ es el coeficiente de fricción (depende de los materiales en contacto),
+	\item $N$ es la fuerza normal (perpendicular a la superficie).
+\end{itemize}
+
+\subsection{Perturbaciones}
+
+Una \textbf{perturbación} es cualquier influencia externa que altera el comportamiento normal o esperado de un sistema. En términos generales, se trata de una desviación o interferencia que afecta el funcionamiento, la estabilidad o el rendimiento del sistema, ya sea de forma temporal o permanente.
+
+Estas pueden ser causadas por factores como cambios en el entorno, errores de medición, vibraciones, variaciones en la carga o cualquier otra condición no prevista que afecte la operación normal del sistema.
+
+Aunque en esta sección no se profundiza en su análisis, es importante reconocer que las perturbaciones son inevitables en sistemas reales, y deben ser consideradas en el diseño y control de sistemas automáticos o robóticos.

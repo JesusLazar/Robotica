@@ -1,0 +1,10 @@
+\subsection{Límites y propiedades dinámicas de las articulaciones} \label{subsec:limites_propiedades}
+
+En los parametros del robot se presentan los parámetros Denavit-Hartenberg (DH) utilizados para modelar el robot KUKA KR-16. A partir de la columna \texttt{tipo}, se especifica que todas las articulaciones del robot son de tipo \textbf{rotacional (R)}, ya que se trata de un robot articulado de 6 grados de libertad. Esto implica que cada articulación permite una rotación alrededor de un eje fijo, lo que es característico de este tipo de manipuladores.
+
+Las columnas $\theta_{\text{min}}$ y $\theta_{\text{max}}$ representan los \textbf{límites angulares} de cada articulación. Estos valores son esenciales para restringir el movimiento del robot dentro de un rango físico seguro y evitar configuraciones que puedan ser inalcanzables o peligrosas.
+
+La columna \texttt{Velocidad del eje} muestra la \textbf{velocidad máxima} en grados por segundo que puede alcanzar cada articulación. Esta información es importante tanto para el diseño de trayectorias como para la simulación del desempeño del robot en tiempo real.
+
+%\subsection{Modelo dinámico del robot}
+%\textit{Esta sección ha sido comentada debido a que el modelo dinámico del robot no fue completado durante el desarrollo del proyecto. Se propone incluirla como trabajo futuro para continuar con el análisis de fuerzas y torques necesarios para el control del manipulador.}
